@@ -35,3 +35,13 @@ Lanza el servidor de desarrollo con:
 ```bash
 npx expo start
 ```
+
+## Luego
+- Abre la app Expo Go en tu celular
+- Escanea el QR Code que aparece en la terminal o navegador
+- ¡Y listo! Verás tu app funcionando.
+---
+
+
+
+
