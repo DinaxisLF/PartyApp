@@ -32,6 +32,21 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/Biryani-Black.ttf",
+            "./assets/fonts/Biryani-Bold.ttf",
+            "./assets/fonts/Biryani-ExtraBold.ttf",
+            "./assets/fonts/Biryani-ExtraLight.ttf",
+            "./assets/fonts/Biryani-Light.ttf",
+            "./assets/fonts/Biryani-Regular.ttf",
+            "./assets/fonts/Biryani-SemiBold.ttf",
+            "./assets/fonts/KronaOne-Regular.ttf"
+          ]
+        }
       ]
     ],
     "experiments": {
