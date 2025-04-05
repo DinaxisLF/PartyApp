@@ -1,50 +1,43 @@
-# Welcome to your Expo app 👋
+# 📱 PartyApp - React Native + Expo (Dockerized)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Este proyecto es una aplicación móvil construida con **React Native usando Expo**, y está completamente dockerizada para facilitar su ejecución sin necesidad de instalar dependencias locales.
 
-## Get started
+---
 
-1. Install dependencies
+## 🚀 Requisitos
 
-   ```bash
-   npm install
-   ```
+Asegúrate de tener instalados:
 
-2. Start the app
+- [Docker](https://www.docker.com/)
+- [Git](https://git-scm.com/)
 
-   ```bash
-    npx expo start
-   ```
+---
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+## 📦 Clonar el repositorio
 
 ```bash
-npm run reset-project
+git clone https://github.com/tu-usuario/PartyApp.git
+cd PartyApp
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+🐳 Construir la imagen Docker
 
-## Learn more
+```bash
+docker build -t party-app .
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+▶️ Ejecutar el contenedor
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+docker run -it -p 8081:8081 --name party-container party-app
+```
 
-## Join the community
+Esto iniciará el servidor de desarrollo de Expo. Verás un QR code en la terminal que puedes escanear con la app Expo Go en tu celular para probar la app.
+💡 Asegúrate de estar conectado a internet y en la misma red Wi-Fi que tu dispositivo móvil.
 
-Join our community of developers creating universal apps.
+🛑 Detener y eliminar el contenedor
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```bash
+docker stop party-container
+docker rm party-container
+```
