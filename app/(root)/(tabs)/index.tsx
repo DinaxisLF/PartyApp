@@ -9,6 +9,9 @@ export default function HomeScreen() {
           PartyApp
         </Text>
         <Text className="font-bold text-xl mt-10">Home Screen</Text>
+        <Link className="mt-10" href={"/screens/user-profile"}>
+          <Text className="font-bold text-xl">Mi Perfil</Text>
+        </Link>
         <Link className="mt-10" href={"/screens/sign-in"}>
           <Text className="font-bold text-xl">Sign In</Text>
         </Link>
