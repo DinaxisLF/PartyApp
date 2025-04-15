@@ -1,30 +1,30 @@
 import React from 'react';
 import { Image, StyleSheet, TouchableOpacity, Text, View, SafeAreaView } from 'react-native';
 import AnimatedBackground from '@/assets/components/AnimatedBackground';
-import { useRouter } from 'expo-router'; 
+import { useRouter } from 'expo-router';
 
 export default function HomeScreen() {
   const router = useRouter();
   return (
-      <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={styles.safeArea}>
       <AnimatedBackground />
-        <View style={styles.container}>
-          <View style={styles.topContent}>
+      <View style={styles.container}>
+        <View style={styles.topContent}>
           <Text style={[styles.title, { fontFamily: 'KronaOne-Regular' }]}>PartyApp</Text>
-            <Image source={require('@/assets/images/logo-principal.png')} style={styles.logo} />
-          </View>
-
-          <View style={styles.bottomButtons}>
-            <TouchableOpacity style={styles.button} onPress={() => router.push("/screens/main-window")}>
-              <Text style={styles.buttonText}>Iniciar sesión</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.buttonText}>Registrarme</Text>
-            </TouchableOpacity>
-          </View>
+          <Image source={require('@/assets/images/logo-principal.png')} style={styles.logo} />
         </View>
-      </SafeAreaView>
+
+        <View style={styles.bottomButtons}>
+          <TouchableOpacity style={styles.button} onPress={() => router.push("/screens/main-window")}>
+            <Text style={styles.buttonText}>Iniciar sesión</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.button} onPress={() => router.push("/screens/user-type")}>
+            <Text style={styles.buttonText}>Registrarme</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </SafeAreaView>
   );
 }
 
