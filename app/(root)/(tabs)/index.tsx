@@ -1,14 +1,15 @@
 import React from 'react';
-import { Image, StyleSheet, TouchableOpacity, Text, View, SafeAreaView } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, Text, View, SafeAreaView, ScrollView } from 'react-native';
 import AnimatedBackground from '@/assets/components/AnimatedBackground';
-import { useRouter } from 'expo-router';
+import { useRouter, Link } from 'expo-router';
 
 export default function HomeScreen() {
   const router = useRouter();
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <AnimatedBackground />
-      <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.topContent}>
           <Text style={[styles.title, { fontFamily: 'KronaOne-Regular' }]}>PartyApp</Text>
           <Image source={require('@/assets/images/logo-principal.png')} style={styles.logo} />
@@ -22,21 +23,35 @@ export default function HomeScreen() {
           <TouchableOpacity style={styles.button} onPress={() => router.push("/screens/user-type")}>
             <Text style={styles.buttonText}>Registrarme</Text>
           </TouchableOpacity>
+
+          {/* Additional navigation links from new-feature */}
+          <Link href="/screens/user-profile" style={styles.link}>
+            <Text style={styles.linkText}>Mi Perfil</Text>
+          </Link>
+
+          <Link href="/screens/sign-in" style={styles.link}>
+            <Text style={styles.linkText}>Sign In</Text>
+          </Link>
+
+          <Link href="/screens/sign-in-client" style={styles.link}>
+            <Text style={styles.linkText}>Sign In Client</Text>
+          </Link>
+
+          <Link href="/screens/fonts" style={styles.link}>
+            <Text style={styles.linkText}>Fuentes</Text>
+          </Link>
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  gradientBackground: {
-    flex: 1,
-  },
   safeArea: {
     flex: 1,
   },
   container: {
-    flex: 1,
+    flexGrow: 1,
     justifyContent: 'space-between',
     paddingHorizontal: 24,
   },
@@ -71,5 +86,14 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontFamily: 'Biryani-Regular',
     fontWeight: 'bold',
+  },
+  link: {
+    marginTop: 15,
+  },
+  linkText: {
+    color: 'white',
+    fontSize: 17,
+    fontWeight: 'bold',
+    fontFamily: 'Biryani-Regular',
   },
 });
