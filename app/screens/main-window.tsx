@@ -12,10 +12,13 @@ export default function HomeScreen() {
         <Link className="mt-10" href={"/screens/user-profile"}>
           <Text className="font-bold text-xl">Mi Perfil</Text>
         </Link>
-        <Link className="mt-10" href={"/screens/sign-in"}>
+        <Link className="mt-10" href={"/screens/sign-in-client"}>
           <Text className="font-bold text-xl">Sign In</Text>
         </Link>
         <Link className="mt-10" href={"/screens/fonts"}>
+          <Text className="font-bold text-2xl">Fuentes</Text>
+        </Link>
+        <Link className="mt-10" href={"/screens/profile-musical-group"}>
           <Text className="font-bold text-2xl">Fuentes</Text>
         </Link>
       </View>

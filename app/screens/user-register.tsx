@@ -33,7 +33,7 @@ export default function UserRegister() {
     <SafeAreaView className="h-full py-8">
       <AnimatedBackground />
       <StatusBar hidden={true} />
-      <View className="flex flex-col px-5 my-20 items-center justify-center">
+      <View className="flex flex-col px-5 py-5 items-center justify-center">
         <View style={styles.topContent}>
           <Text style={styles.title}>Crear Cuenta</Text>
           <Image
@@ -42,65 +42,77 @@ export default function UserRegister() {
           />
         </View>
 
-        <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
-          <View style={styles.contenedor}>
-            <Text className="text-lg font-biryani-semibold text-white py-2 ml-3 mb-0">Nombre</Text>
-            <TextInput style={styles.input} placeholder="👤 Nombre" placeholderTextColor="#fff" />
-
-            <Text className="text-lg font-biryani-semibold text-white py-2 ml-3 mb-0">Apellidos</Text>
-            <TextInput style={styles.input} placeholder="👤 Apellidos" placeholderTextColor="#fff" />
-
-            <Text className="text-lg font-biryani-semibold text-white py-2 ml-3 mb-0">Correo</Text>
-            <TextInput style={styles.input} placeholder="📧 Correo" placeholderTextColor="#fff" />
-
-            <Text className="text-lg font-biryani-semibold text-white py-2 ml-3 mb-0">Contraseña</Text>
-            <TextInput style={styles.input} placeholder="👁️ Contraseña" placeholderTextColor="#fff" secureTextEntry={true} />
-
-            {/* Botón subir documento */}
-            <TouchableOpacity
-              onPress={handlePickDocument}
-              className="bg-gray-300 px-4 py-3 rounded-lg flex-row items-center justify-center mt-2 ml-3"
+        <View style={[styles.contenedor, { flex: 0 }]}>
+          {/* Changed from ScrollView to View */}
+          <Text className="text-lg font-biryani-semibold text-white ml-3 mb-0">
+            Nombre
+          </Text>
+          <TextInput
+            style={styles.input}
+            placeholder="👤 Nombre"
+            placeholderTextColor="#fff"
+          />
+          <Text className="text-lg font-biryani-semibold text-white ml-3 mb-0">
+            Apellidos
+          </Text>
+          <TextInput
+            style={styles.input}
+            placeholder="👤 Apellidos"
+            placeholderTextColor="#fff"
+          />
+          <Text className="text-lg font-biryani-semibold text-white ml-3 mb-0">
+            Correo
+          </Text>
+          <TextInput
+            style={styles.input}
+            placeholder="📧 Correo"
+            placeholderTextColor="#fff"
+          />
+          <Text className="text-lg font-biryani-semibold text-white ml-3 mb-0">
+            Contraseña
+          </Text>
+          <TextInput
+            style={styles.input}
+            placeholder="👁️ Contraseña"
+            placeholderTextColor="#fff"
+            secureTextEntry={true}
+          />
+          {/* Botón subir documento */}
+          <TouchableOpacity
+            onPress={handlePickDocument}
+            className="bg-gray-300 px-4 rounded-lg flex-row items-center justify-center ml-3"
+          >
+            <Text className="text-black font-biryani-semibold">
+              📄 Subir identificación oficial
+            </Text>
+          </TouchableOpacity>
+          <View style={styles.documentContainer}>
+            <Text
+              style={styles.documentText}
+              numberOfLines={1}
+              ellipsizeMode="tail"
             >
-              <Text className="text-black font-biryani-semibold ">
-                📄 Subir identificación oficial
-              </Text>
-            </TouchableOpacity>
-
-            <View style={styles.documentContainer}>
-              <Text
-                style={styles.documentText}
-                numberOfLines={1}
-                ellipsizeMode="tail"
-              >
-                {documentName || " "}
-              </Text>
-            </View>
-
-            {/* Checkbox de términos */}
-            <View style={styles.termsContainer}>
-              <Checkbox
-                value={acceptedTerms}
-                onValueChange={setAcceptedTerms}
-                color={acceptedTerms ? "#0013ff" : undefined}
-              />
-              <Text style={styles.termsText}>
-                Acepto los{" "}
-                <Text
-                  style={styles.link}
-                >
-                  Términos y Condiciones
-                </Text>
-              </Text>
-            </View>
-
-            {/* Botón de acción */}
-            <TouchableOpacity className="bg-blue-500 px-4 py-3 rounded-lg flex-row items-center justify-center mt-2 ml-3">
-              <Text className="text-white font-biryani-semibold text-center">
-                Acceder
-              </Text>
-            </TouchableOpacity>
+              {documentName || " "}
+            </Text>
           </View>
-        </ScrollView>
+          {/* Checkbox de términos */}
+          <View style={styles.termsContainer}>
+            <Checkbox
+              value={acceptedTerms}
+              onValueChange={setAcceptedTerms}
+              color={acceptedTerms ? "#0013ff" : undefined}
+            />
+            <Text style={styles.termsText}>
+              Acepto los <Text style={styles.link}>Términos y Condiciones</Text>
+            </Text>
+          </View>
+          {/* Botón de acción */}
+          <TouchableOpacity className="bg-blue-500 px-4 py-2 rounded-lg flex-row items-center justify-center mt-2 ml-3">
+            <Text className="text-white font-biryani-semibold text-center">
+              Registrarse
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -115,10 +127,10 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(120, 120, 120, 0.25)",
     borderRadius: 20,
     padding: 20,
-    height: 'auto',
-    width: '98%',
-    maxWidth: '98%',
-    minWidth: '98%',
+    height: "auto",
+    width: "98%",
+    maxWidth: "98%",
+    minWidth: "98%",
     marginBottom: 20,
   },
   topContent: {
@@ -133,12 +145,12 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   logo: {
-    width: 80,
-    height: 80,
+    width: 70,
+    height: 70,
     marginBottom: 20,
   },
   input: {
-    height: 50,
+    height: 35,
     marginLeft: 12,
     marginBottom: 20,
     borderWidth: 1,
@@ -154,8 +166,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "flex-start",
-    minHeight: 20,  // Mantiene espacio fijo sin que se mueva
-    paddingVertical: 5,  // Espaciado arriba/abajo para mayor consistencia
+    minHeight: 10, // Mantiene espacio fijo sin que se mueva
   },
   documentText: {
     color: "white",
@@ -166,7 +177,7 @@ const styles = StyleSheet.create({
   termsContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 15,
+    marginTop: 5,
     marginLeft: 10,
     marginBottom: 20,
     gap: 8,
@@ -177,7 +188,7 @@ const styles = StyleSheet.create({
     fontFamily: "biryani-light",
   },
   link: {
-    color: "#add8e6",
+    color: "#fffff",
     textDecorationLine: "underline",
   },
 });

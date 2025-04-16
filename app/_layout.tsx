@@ -4,8 +4,6 @@ import { useFonts } from "expo-font";
 import { useEffect } from "react";
 import AnimatedBackground from "../assets/components/AnimatedBackground";
 
-
-
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
     "Biryani-Black": require("../assets/fonts/Biryani-Black.ttf"),
@@ -29,9 +27,7 @@ export default function RootLayout() {
 
   return (
     <>
-      <AnimatedBackground />
       <Stack screenOptions={{ headerShown: false }} />
     </>
-  );  
-
+  );
 }

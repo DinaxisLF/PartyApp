@@ -1,7 +1,15 @@
-import React from 'react';
-import { Image, StyleSheet, TouchableOpacity, Text, View, SafeAreaView, ScrollView } from 'react-native';
-import AnimatedBackground from '@/assets/components/AnimatedBackground';
-import { useRouter, Link } from 'expo-router';
+import React from "react";
+import {
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  View,
+  SafeAreaView,
+  ScrollView,
+} from "react-native";
+import AnimatedBackground from "@/assets/components/AnimatedBackground";
+import { useRouter, Link } from "expo-router";
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -11,35 +19,29 @@ export default function HomeScreen() {
       <AnimatedBackground />
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.topContent}>
-          <Text style={[styles.title, { fontFamily: 'KronaOne-Regular' }]}>PartyApp</Text>
-          <Image source={require('@/assets/images/logo-principal.png')} style={styles.logo} />
+          <Text style={[styles.title, { fontFamily: "KronaOne-Regular" }]}>
+            PartyApp
+          </Text>
+          <Image
+            source={require("@/assets/images/logo-principal.png")}
+            style={styles.logo}
+          />
         </View>
 
         <View style={styles.bottomButtons}>
-          <TouchableOpacity style={styles.button} onPress={() => router.push("/screens/main-window")}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => router.push("/screens/main-window")}
+          >
             <Text style={styles.buttonText}>Iniciar sesión</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.button} onPress={() => router.push("/screens/user-type")}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => router.push("/screens/user-type")}
+          >
             <Text style={styles.buttonText}>Registrarme</Text>
           </TouchableOpacity>
-
-          {/* Additional navigation links from new-feature */}
-          <Link href="/screens/user-profile" style={styles.link}>
-            <Text style={styles.linkText}>Mi Perfil</Text>
-          </Link>
-
-          <Link href="/screens/sign-in" style={styles.link}>
-            <Text style={styles.linkText}>Sign In</Text>
-          </Link>
-
-          <Link href="/screens/sign-in-client" style={styles.link}>
-            <Text style={styles.linkText}>Sign In Client</Text>
-          </Link>
-
-          <Link href="/screens/fonts" style={styles.link}>
-            <Text style={styles.linkText}>Fuentes</Text>
-          </Link>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -52,17 +54,17 @@ const styles = StyleSheet.create({
   },
   container: {
     flexGrow: 1,
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
     paddingHorizontal: 24,
   },
   topContent: {
-    alignItems: 'center',
+    alignItems: "center",
     marginTop: 80,
   },
   title: {
     fontSize: 32,
-    fontWeight: 'bold',
-    color: 'white',
+    fontWeight: "bold",
+    color: "white",
     marginBottom: 10,
   },
   logo: {
@@ -71,29 +73,29 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   bottomButtons: {
-    alignItems: 'center',
+    alignItems: "center",
     marginBottom: 50,
   },
   button: {
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    backgroundColor: "rgba(255, 255, 255, 0.2)",
     paddingVertical: 12,
     paddingHorizontal: 40,
     borderRadius: 25,
     marginTop: 15,
   },
   buttonText: {
-    color: 'white',
+    color: "white",
     fontSize: 17,
-    fontFamily: 'Biryani-Regular',
-    fontWeight: 'bold',
+    fontFamily: "Biryani-Regular",
+    fontWeight: "bold",
   },
   link: {
     marginTop: 15,
   },
   linkText: {
-    color: 'white',
+    color: "white",
     fontSize: 17,
-    fontWeight: 'bold',
-    fontFamily: 'Biryani-Regular',
+    fontWeight: "bold",
+    fontFamily: "Biryani-Regular",
   },
 });
