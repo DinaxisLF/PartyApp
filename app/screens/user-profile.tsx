@@ -10,7 +10,7 @@ import {
 import { StatusBar } from "expo-status-bar";
 import { LinearGradient } from 'expo-linear-gradient';
 import { FontAwesome } from "@expo/vector-icons";
-import BottomNavBar from '../../assets/components/navBar';
+
 
 const ProfileScreen: React.FC = () => {
   return (
@@ -173,7 +173,6 @@ const ProfileScreen: React.FC = () => {
           </TouchableOpacity>
         </View>
       </ScrollView>
-      <BottomNavBar activeTab="perfil" />
     </SafeAreaView>
     </LinearGradient>
   );
