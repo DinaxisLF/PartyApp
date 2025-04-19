@@ -14,6 +14,7 @@ module.exports = {
         "biryani-light": ["Biryani-Light", "sans-serif"],
         "biryani-extralight": ["Biryani-ExtraLight", "sans-serif"],
         kronaone: ["KronaOne-Regular", "sans-serif"],
+        inter: ["Inter_400Regular"], "inter-bold": ["Inter_700Bold"],
       },
     },
   },
