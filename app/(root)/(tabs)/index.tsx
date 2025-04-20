@@ -24,7 +24,7 @@ export default function HomeScreen() {
           <Text style={styles.title}>PartyApp</Text>
           <Image
             source={require("@/assets/images/logo-principal.png")}
-            style={[styles.logo,{marginTop: 50}]}
+            style={[styles.logo, { marginTop: 50 }]}
             resizeMode="contain"
           />
         </View>
@@ -42,6 +42,13 @@ export default function HomeScreen() {
             onPress={() => router.push("/screens/user-type")}
           >
             <Text style={styles.buttonText}>Registrarme</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => router.push("/screens/main-window")}
+          >
+            <Text style={styles.buttonText}>Pantallas</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -84,13 +91,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: width * 0.18,
     borderRadius: 12,
     width: "80%",
-    maxWidth: 280, 
+    maxWidth: 280,
     alignItems: "center",
   },
   buttonText: {
     color: "white",
-    fontSize: 17, 
+    fontSize: 17,
     fontFamily: "Biryani-Regular",
     fontWeight: "bold",
-  },  
+  },
 });
