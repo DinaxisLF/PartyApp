@@ -6,10 +6,12 @@ import {
   Text,
   View,
   SafeAreaView,
-  ScrollView,
+  Dimensions,
 } from "react-native";
 import AnimatedBackground from "@/assets/components/AnimatedBackground";
-import { useRouter, Link } from "expo-router";
+import { useRouter } from "expo-router";
+
+const { width, height } = Dimensions.get("window");
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -17,23 +19,22 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <AnimatedBackground />
-      <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.container}>
         <View style={styles.topContent}>
-          <Text style={[styles.title, { fontFamily: "KronaOne-Regular" }]}>
-            PartyApp
-          </Text>
+          <Text style={styles.title}>PartyApp</Text>
           <Image
             source={require("@/assets/images/logo-principal.png")}
-            style={styles.logo}
+            style={[styles.logo,{marginTop: 50}]}
+            resizeMode="contain"
           />
         </View>
 
         <View style={styles.bottomButtons}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => router.push("/screens/main-window")}
+            onPress={() => router.push("/screens/login")}
           >
-            <Text style={styles.buttonText}>Iniciar sesión</Text>
+            <Text style={styles.buttonText}>Iniciar Sesión</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -43,7 +44,7 @@ export default function HomeScreen() {
             <Text style={styles.buttonText}>Registrarme</Text>
           </TouchableOpacity>
         </View>
-      </ScrollView>
+      </View>
     </SafeAreaView>
   );
 }
@@ -53,49 +54,43 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   container: {
-    flexGrow: 1,
-    justifyContent: "space-between",
-    paddingHorizontal: 24,
+    flex: 1,
+    justifyContent: "space-around",
+    alignItems: "center",
+    paddingHorizontal: width * 0.08,
+    paddingVertical: height * 0.08,
   },
   topContent: {
     alignItems: "center",
-    marginTop: 80,
   },
   title: {
-    fontSize: 32,
+    fontSize: width * 0.09,
     fontWeight: "bold",
     color: "white",
-    marginBottom: 10,
+    marginBottom: height * 0.04,
+    fontFamily: "KronaOne-Regular",
   },
   logo: {
-    width: 80,
-    height: 80,
-    marginBottom: 30,
+    width: width * 0.4,
+    height: width * 0.4,
   },
   bottomButtons: {
     alignItems: "center",
-    marginBottom: 50,
+    gap: height * 0.02,
   },
   button: {
-    backgroundColor: "rgba(255, 255, 255, 0.2)",
-    paddingVertical: 12,
-    paddingHorizontal: 40,
-    borderRadius: 25,
-    marginTop: 15,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    paddingVertical: height * 0.018,
+    paddingHorizontal: width * 0.18,
+    borderRadius: 12,
+    width: "80%",
+    maxWidth: 280, 
+    alignItems: "center",
   },
   buttonText: {
     color: "white",
-    fontSize: 17,
+    fontSize: 17, 
     fontFamily: "Biryani-Regular",
     fontWeight: "bold",
-  },
-  link: {
-    marginTop: 15,
-  },
-  linkText: {
-    color: "white",
-    fontSize: 17,
-    fontWeight: "bold",
-    fontFamily: "Biryani-Regular",
-  },
+  },  
 });
