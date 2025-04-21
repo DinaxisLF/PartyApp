@@ -1,5 +1,7 @@
 import { FontAwesome } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import { router } from "expo-router";
+import { routeToScreen } from "expo-router/build/useScreens";
 import { StatusBar } from "expo-status-bar";
 import { View, Text, Image, ScrollView, TouchableOpacity, Linking, SafeAreaView, StyleSheet } from "react-native";
 
@@ -96,8 +98,8 @@ export default function PerfilGrupo() {
           </View>
         </ScrollView >
         <TouchableOpacity
-          onPress={() => console.log('Botón presionado')}
           style={styles["btn-contratar"]}
+          onPress={() => router.push("/screens/hiring-screen")}
         >
           <Image
             source={require("@/assets/images/plus_round_icon.png")}
