@@ -23,6 +23,9 @@ export default function HomeScreen() {
           <Link className="mt-10" href={"/screens/fonts"}>
             <Text className="font-bold text-2xl text-white">Fuentes</Text>
           </Link>
+          <Link className="mt-10" href={"/screens/user-events"}>
+            <Text className="font-bold text-2xl text-white">Eventos Usuario</Text>
+          </Link>
         </View>
       </SafeAreaView>
     </LinearGradient>
