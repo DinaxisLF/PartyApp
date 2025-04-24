@@ -21,6 +21,9 @@ export default function HomeScreen() {
         <Link className="mt-10" href={"/screens/profile-musical-group"}>
           <Text className="font-bold text-2xl">Fuentes</Text>
         </Link>
+        <Link className="mt-10" href={"/screens/search_for_groups"}>
+          <Text className="font-bold text-2xl">Busqueda Grupos</Text>
+        </Link>
       </View>
     </SafeAreaView>
   );

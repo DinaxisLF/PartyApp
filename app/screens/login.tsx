@@ -12,7 +12,7 @@ import {
   SafeAreaView,
   Image,
 } from "react-native";
-import AnimatedBackground from "@/assets/components/AnimatedBackground";
+import AnimatedBackground from "../../assets/components/AnimatedBackground";
 import { useRouter } from "expo-router";
 
 const { width, height } = Dimensions.get("window");
