@@ -20,7 +20,7 @@ Antes de iniciar, asegúrate de tener instalado:
 1. Clona el repositorio:
 
 ```bash
-git clone https://github.com/tu-usuario/PartyApp.git
+git clone https://github.com/DinaxisLF/PartyApp.git
 cd PartyApp
 ```
 

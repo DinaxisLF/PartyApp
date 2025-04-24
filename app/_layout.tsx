@@ -3,8 +3,7 @@ import "./globals.css";
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
 import AnimatedBackground from "../assets/components/AnimatedBackground";
-
-
+import {Inter_400Regular, Inter_700Bold, Inter_500Medium } from '@expo-google-fonts/inter';
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -16,6 +15,9 @@ export default function RootLayout() {
     "Biryani-Regular": require("../assets/fonts/Biryani-Regular.ttf"),
     "Biryani-SemiBold": require("../assets/fonts/Biryani-SemiBold.ttf"),
     "KronaOne-Regular": require("../assets/fonts/KronaOne-Regular.ttf"),
+    Inter_400Regular,
+    Inter_700Bold,
+    Inter_500Medium,
   });
 
   useEffect(() => {
@@ -29,9 +31,7 @@ export default function RootLayout() {
 
   return (
     <>
-      <AnimatedBackground />
       <Stack screenOptions={{ headerShown: false }} />
     </>
-  );  
-
+  );
 }
