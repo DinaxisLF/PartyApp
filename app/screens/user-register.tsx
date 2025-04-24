@@ -6,10 +6,9 @@ import {
   Image,
   StyleSheet,
   TouchableOpacity,
-  StatusBar,
   TextInput,
-  ScrollView,
 } from "react-native";
+import { StatusBar } from "expo-status-bar";
 import Checkbox from "expo-checkbox";
 import * as DocumentPicker from "expo-document-picker";
 import { useState } from "react";
@@ -32,7 +31,7 @@ export default function UserRegister() {
   return (
     <SafeAreaView className="h-full py-8">
       <AnimatedBackground />
-      <StatusBar hidden={true} />
+      <StatusBar style="light" />
       <View className="flex flex-col px-5 py-5 items-center justify-center">
         <View style={styles.topContent}>
           <Text style={styles.title}>Crear Cuenta</Text>

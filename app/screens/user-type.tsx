@@ -7,15 +7,16 @@ import {
   Image,
   StyleSheet,
   TouchableOpacity,
-  StatusBar,
 } from "react-native";
+
+import { StatusBar } from "expo-status-bar";
 
 export default function UserType() {
   return (
     <SafeAreaView className="h-full">
       <AnimatedBackground />
-      <StatusBar hidden={true} />
-      <View className="flex flex-col px-5 items-center justify-center">
+      <StatusBar style="light" />
+      <View className="flex flex-col px-5 items-center justify-center mt-10">
         <View style={styles.topContent}>
           <Text style={styles.title}>PartyApp</Text>
           <Image
@@ -35,7 +36,9 @@ export default function UserType() {
             Registrate como grupo musical y recibe solicitudes de clientes que
             buscan talentos para sus eventos.
           </Text>
-          <TouchableOpacity className="bg-blue-500 px-5 py-2 rounded-md mt-2 max-w-40">
+          <TouchableOpacity className="bg-blue-500 px-5 py-2 rounded-md mt-2 max-w-40"
+            onPress={() => router.push("/screens/group-register")}
+          >
             <Text className="text-white font-biryani-semibold text-center">
               Soy Grupo 🎵
             </Text>
