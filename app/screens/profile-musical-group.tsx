@@ -1,18 +1,18 @@
+import { View, Text, Image, ScrollView, TouchableOpacity, Linking, SafeAreaView, StyleSheet } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
-import { router } from "expo-router";
-import { routeToScreen } from "expo-router/build/useScreens";
 import { StatusBar } from "expo-status-bar";
-import { View, Text, Image, ScrollView, TouchableOpacity, Linking, SafeAreaView, StyleSheet } from "react-native";
+import { router } from "expo-router";
 
 export default function PerfilGrupo() {
-  const generos = ["Rock", "Pop", "Cumbia"]; // Géneros musicales del grupo
+  const generos = ["Rock", "Pop", "Cumbia"];
+  const diasDisponibles = ["D", "L", "M", "I", "J", "V", "S"];
   const portafolio = [
     { tipo: "video", uri: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
   ];
 
   const abrirVideo = (url: string) => {
-    Linking.openURL(url);  // Abre el enlace de YouTube en el navegador o en la app de YouTube
+    Linking.openURL(url);
   };
 
   return (
@@ -23,80 +23,81 @@ export default function PerfilGrupo() {
       end={{ x: 0, y: 1 }}
     >
       <SafeAreaView>
-        <ScrollView contentContainerStyle={{
-          paddingBottom: 40,
-          borderTopColor: "transparent",
-        }}>
-          {/* Barra de navegación superior */}
+        <ScrollView contentContainerStyle={{ paddingBottom: 40 }}>
           <StatusBar style="light" />
-          {/* Foto de portada */}
+          
+          {/* Imagen de encabezado */}
           <Image
             source={{ uri: "https://img.freepik.com/foto-gratis/retrato-mujer-cantando-microfono_107420-96131.jpg?t=st=1743888873~exp=1743892473~hmac=2aa79b701bc1930b4e870eeadefeecd8560b13e5dc4ce52d5fbc4b8bb0116799&w=1380" }}
-            className="w-full h-52 "
+            className="w-full h-52"
             resizeMode="cover"
           />
 
-          <View className="px-5 py-4 w-full flex">
-            {/* Nombre del grupo */}
-            <Text className="text-xl text-white font-biryani-bold mb-2">Nombre Grupo Musical</Text>
-
-            {/* Estrellas de calificación */}
-            <View className="flex-row mt-2 mb-5">
-              <FontAwesome name="star" size={20} color="#FFD700" />
-              <FontAwesome name="star" size={20} color="#FFD700" />
-              <FontAwesome name="star" size={20} color="#FFD700" />
-              <FontAwesome name="star-half-full" size={20} color="#FFD700" />
-              <FontAwesome name="star-o" size={20} color="#FFD700" />
+          <View className="px-5 py-4">
+            {/* Nombre y estrellas */}
+            <View className="flex-row items-center justify-between mb-2">
+              <Text className="text-xl text-white font-bold">Los Rítmicos</Text>
+              <View className="flex-row gap-1">
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <FontAwesome
+                    key={i}
+                    name={i <= 3 ? "star" : i === 4 ? "star-half-full" : "star-o"}
+                    size={18}
+                    color="#FFD700"
+                  />
+                ))}
+              </View>
             </View>
 
-            {/* Descripción del grupo */}
-            <View className="bg-slate-800 p-6 rounded-xl shadow-md max-w-md mt-4 mb-5">
-              <Text className="text-white mb-4">
-                Aquí va la descripción del grupo musical. Puedes incluir información sobre su estilo, historia y cualquier otro detalle relevante.
+            {/* Descripción sombreada */}
+            <View className="bg-slate-800 p-4 rounded-xl shadow-md mb-5">
+              <Text className="text-white text-sm">
+                Somos una agrupación versátil con más de 8 años de experiencia tocando en bodas, cumpleaños, eventos corporativos y más.
               </Text>
             </View>
 
-
-            {/* Géneros musicales */}
-            <Text className="text-white font-biryani-semibold">Géneros:</Text>
-            <View className="flex-row flex-wrap gap-2 mt-1 mb-4">
+            {/* Géneros */}
+            <Text className="text-white font-semibold mb-1">Géneros:</Text>
+            <View className="flex-row flex-wrap gap-2 mb-4">
               {generos.map((g, idx) => (
-                <Text key={idx} className="bg-slate-800 text-sm text-white px-3 py-1 rounded-full">
+                <Text key={idx} className="bg-black/30 text-white px-3 py-1 rounded-full text-sm">
                   {g}
                 </Text>
               ))}
             </View>
 
-            {/* Tarifa por hora */}
-            <Text className="text-white font-biryani-semibold mb-1">Tarifa por hora:</Text>
-            <Text className="bg-slate-800 text-lg text-white mb-4 self-start pl-4 pr-4 rounded-full">$1500 MXN</Text>
+            {/* Tarifa */}
+            <Text className="text-white font-semibold mb-1">Tarifa por hora:</Text>
+            <Text className="text-white bg-black/30 px-4 py-2 rounded-full w-fit mb-4">$1500 MXN</Text>
+
+            {/* Calendario de disponibilidad */}
+            <Text className="text-white font-semibold mb-2">Calendario de disponibilidad:</Text>
+            <View className="bg-slate-800 p-4 rounded-xl shadow-md mb-5">
+              <Text className="text-sm text-white">Miércoles a Viernes: 6PM - 10PM</Text>
+              <Text className="text-sm text-white">Sábados y Domingo: Disponible todo el día</Text>
+              <Text className="text-sm text-white">Lunes y Martes: No disponible</Text>
+            </View>
 
             {/* Portafolio */}
-            <Text className="text-white font-biryani-semibold mb-2">Portafolio:</Text>
+            <Text className="text-white font-semibold mb-2">Portafolio:</Text>
             <ScrollView horizontal className="mb-6">
               {portafolio.map((item, idx) => (
                 <TouchableOpacity
                   key={idx}
-                  onPress={() => abrirVideo(item.uri)}  // Maneja el clic y redirige al video
+                  onPress={() => abrirVideo(item.uri)}
                   style={{ marginRight: 12 }}
                 >
                   <Image
-                    source={{ uri: "https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg" }}  // Miniatura del video
+                    source={{ uri: "https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg" }}
                     style={{ width: 150, height: 90, borderRadius: 8 }}
                   />
                 </TouchableOpacity>
               ))}
             </ScrollView>
-
-            {/* Calendario de disponibilidad (estático) */}
-            <Text className="text-white font-biryani-semibold mb-2">Calendario de disponibilidad:</Text>
-            <View className="bg-slate-800 p-4 rounded-xl shadow-md max-w-md mb-5">
-              <Text className="text-sm text-white">Miércoles a Viernes: 6PM - 10PM</Text>
-              <Text className="text-sm text-white">Sábados y Domingo: Disponible todo el día</Text>
-              <Text className="text-sm text-white">Lunes y Martes: No disponible</Text>
-            </View>
           </View>
-        </ScrollView >
+        </ScrollView>
+
+        {/* Botón contratar */}
         <TouchableOpacity
           style={styles["btn-contratar"]}
           onPress={() => router.push("/screens/hiring-screen")}
@@ -105,11 +106,10 @@ export default function PerfilGrupo() {
             source={require("@/assets/images/plus_round_icon.png")}
             style={{ width: 24, height: 24, marginRight: 8 }}
           />
-          <Text className="text-white font-biryani-black">Contratar</Text>
+          <Text className="text-white font-bold">Contratar</Text>
         </TouchableOpacity>
       </SafeAreaView>
     </LinearGradient>
-
   );
 }
 
@@ -132,4 +132,4 @@ const styles = StyleSheet.create({
     elevation: 5,
     zIndex: 100,
   }
-})
+});
