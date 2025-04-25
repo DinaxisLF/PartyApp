@@ -8,18 +8,13 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { LinearGradient } from 'expo-linear-gradient';
 import { FontAwesome } from "@expo/vector-icons";
+import GradientBackground from '../../assets/components/gradientBackground'; // ajusta la ruta si es necesario
 
 
 const ProfileScreen: React.FC = () => {
   return (
-    <LinearGradient
-    colors={['#4A60C9', '#4A60C9', '#4A60C9', '#9663BA', '#9663BA']}
-    style={{ flex: 1 }}
-    start={{ x: 0, y: 0 }}
-    end={{ x: 0, y: 1 }}
-    >
+    <GradientBackground>
     <SafeAreaView>
       <StatusBar style="light" />
       <ScrollView
@@ -174,7 +169,7 @@ const ProfileScreen: React.FC = () => {
         </View>
       </ScrollView>
     </SafeAreaView>
-    </LinearGradient>
+    </GradientBackground>
   );
 };
 

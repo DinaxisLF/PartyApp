@@ -1,6 +1,7 @@
 import { Link } from "expo-router";
 import { View, Text, SafeAreaView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+
 export default function HomeScreen() {
   return (
     <LinearGradient
@@ -25,6 +26,9 @@ export default function HomeScreen() {
           </Link>
           <Link className="mt-10" href={"/screens/user-events"}>
             <Text className="font-bold text-2xl text-white">Eventos Usuario</Text>
+          </Link>
+          <Link className="mt-10" href={"/screens/search_for_groups"}>
+            <Text className="font-bold text-2xl text-white">Busqueda Grupos</Text>
           </Link>
         </View>
       </SafeAreaView>
