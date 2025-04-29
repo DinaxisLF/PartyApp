@@ -30,6 +30,9 @@ export default function HomeScreen() {
           <Link className="mt-10" href={"/screens/search_for_groups"}>
             <Text className="font-bold text-2xl text-white">Busqueda Grupos</Text>
           </Link>
+          <Link className="mt-10" href={"/screens/payment_history"}>
+            <Text className="font-bold text-2xl text-white">Informacion de Pagos</Text>
+          </Link>
         </View>
       </SafeAreaView>
     </LinearGradient>

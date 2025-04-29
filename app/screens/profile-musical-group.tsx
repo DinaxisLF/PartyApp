@@ -3,6 +3,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { StatusBar } from "expo-status-bar";
 import { router } from "expo-router";
+import GradientBackground from "@/assets/components/gradientBackground";
 
 export default function PerfilGrupo() {
   const generos = ["Rock", "Pop", "Cumbia"];
@@ -16,12 +17,7 @@ export default function PerfilGrupo() {
   };
 
   return (
-    <LinearGradient
-      colors={['#4A60C9', '#4A60C9', '#4A60C9', '#9663BA', '#9663BA']}
-      style={{ flex: 1 }}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 0, y: 1 }}
-    >
+<GradientBackground>
       <SafeAreaView>
         <ScrollView contentContainerStyle={{ paddingBottom: 40 }}>
           <StatusBar style="light" />
@@ -109,7 +105,7 @@ export default function PerfilGrupo() {
           <Text className="text-white font-bold">Contratar</Text>
         </TouchableOpacity>
       </SafeAreaView>
-    </LinearGradient>
+    </GradientBackground>
   );
 }
 
