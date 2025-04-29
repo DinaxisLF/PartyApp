@@ -15,9 +15,6 @@ import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { Slider } from "@rneui/themed";
 import { StyleSheet } from "react-native";
-import DateTimePicker, {
-  DateTimePickerEvent,
-} from "@react-native-community/datetimepicker";
 
 interface Day {
   dateString: string;
@@ -43,8 +40,6 @@ const CatalogScreen: React.FC = () => {
   //Modal Fecha
   const [showDateModal, setShowDateModal] = useState(false);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
-  const [showDatePicker, setShowDatePicker] = useState(false);
-  const [date, setDate] = useState(new Date());
 
   const handleGuardar = () => {
     if (selectedDate) {
@@ -70,20 +65,13 @@ const CatalogScreen: React.FC = () => {
     setShowGeneroModal(false);
   };
 
-  const handleDateChange = (
-    event: DateTimePickerEvent,
-    selectedDate?: Date
-  ) => {
-    const currentDate = selectedDate || date;
-    setShowDatePicker(false);
-    setDate(currentDate);
-  };
 
   return (
     <LinearGradient
       colors={["#4A60C9", "#4A60C9", "#9663BA"]}
       style={{ flex: 1 }}
     >
+      
       <SafeAreaView style={{ flex: 1 }}>
         <ScrollView
           contentContainerStyle={{ paddingBottom: 100, paddingHorizontal: 16 }}
