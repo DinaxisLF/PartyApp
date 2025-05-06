@@ -6,6 +6,7 @@ import {
   TextInput,
   ScrollView,
   Image,
+  FlatList,
   TouchableOpacity,
   Modal,
   TouchableWithoutFeedback,
@@ -15,6 +16,7 @@ import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { Slider } from "@rneui/themed";
 import { StyleSheet } from "react-native";
+import GradientBackground from "@/assets/components/gradientBackground";
 
 interface Day {
   dateString: string;
@@ -22,6 +24,41 @@ interface Day {
   month: number;
   day: number;
 }
+
+export const groupData = [
+  {
+    id: "1",
+    name: "Grupo Farenheit",
+    image: require("../../../assets/images/farenheit.jpg"),
+    tags: ["Norteño", "Banda", "Regional"],
+    price: 3200,
+    rating: 5,
+  },
+  {
+    id: "2",
+    name: "Los Tigres",
+    image: require("../../../assets/images/tigres.jpeg"),
+    tags: ["Norteño", "Clásico"],
+    price: 2800,
+    rating: 4,
+  },
+  {
+    id: "3",
+    name: "Banda MS",
+    image: require("../../../assets/images/banda-ms.jpg"),
+    tags: ["Banda", "Moderno"],
+    price: 3500,
+    rating: 5,
+  },
+  {
+    id: "4",
+    name: "Los Ángeles Azules",
+    image: require("../../../assets/images/angeles-azules.webp"),
+    tags: ["Cumbia", "Clásico"],
+    price: 2500,
+    rating: 4,
+  },
+];
 
 const CatalogScreen: React.FC = () => {
   const [filtersVisible, setFiltersVisible] = useState(false);
@@ -54,7 +91,7 @@ const CatalogScreen: React.FC = () => {
   };
 
   const handleDateSelect = (day: DateData) => {
-    setSelectedDate(day.dateString); 
+    setSelectedDate(day.dateString);
   };
 
   const toggleFilters = () => {
@@ -65,28 +102,13 @@ const CatalogScreen: React.FC = () => {
     setShowGeneroModal(false);
   };
 
-
   return (
-    <LinearGradient
-      colors={["#4A60C9", "#4A60C9", "#9663BA"]}
-      style={{ flex: 1 }}
-    >
-      
+    <GradientBackground>
       <SafeAreaView style={{ flex: 1 }}>
-        <ScrollView
-          contentContainerStyle={{ paddingBottom: 100, paddingHorizontal: 16 }}
-        >
+        <View className="flex-col px-5">
           {/* Título */}
-          <Text
-            style={{
-              fontSize: 32,
-              fontWeight: "bold",
-              color: "white",
-              textAlign: "center",
-              marginTop: 20,
-            }}
-          >
-            Catálogo
+          <Text className="font-biryani-semibold color-white text-[32px] text-center mt-10">
+            Catalogo
           </Text>
 
           {/* Buscador */}
@@ -175,74 +197,87 @@ const CatalogScreen: React.FC = () => {
           </View>
 
           {/* Lista de grupos */}
-          {data.map((_, index) => (
-            <View
-              key={index}
-              style={{
-                backgroundColor: "#2e2e4e",
-                borderRadius: 16,
-                padding: 12,
-                marginTop: 20,
-                flexDirection: "row",
-                alignItems: "center",
-              }}
-            >
-              <Image
-                source={require("../../assets/images/farenheit.jpg")}
-                style={{ width: 80, height: 80, borderRadius: 10 }}
-              />
+          <FlatList
+            data={groupData} // Your data array
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+              <View
+                style={{
+                  backgroundColor: "#2e2e4e",
+                  borderRadius: 16,
+                  padding: 12,
+                  marginTop: 20,
+                  flexDirection: "row",
+                  alignItems: "center",
+                  marginHorizontal: 5, 
+                }}
+              >
+                <Image
+                  source={
+                    item.image ||
+                    require("../../../assets/images/farenheit.jpg")
+                  }
+                  style={{ width: 80, height: 80, borderRadius: 10 }}
+                />
 
-              <View style={{ flex: 1, marginLeft: 12 }}>
-                <Text
-                  style={{ color: "white", fontSize: 18, fontWeight: "bold" }}
-                >
-                  Grupo Farenheit
-                </Text>
+                <View style={{ flex: 1, marginLeft: 12 }}>
+                  <Text
+                    style={{ color: "white", fontSize: 18, fontWeight: "bold" }}
+                  >
+                    {item.name || "Grupo Farenheit"}
+                  </Text>
 
-                <View style={{ flexDirection: "row", marginVertical: 4 }}>
-                  {["Norteño", "Norteño", "Norteño"].map((tag, i) => (
-                    <Text
-                      key={i}
-                      style={{
-                        backgroundColor: "#4A60C9",
-                        color: "white",
-                        fontSize: 10,
-                        paddingVertical: 2,
-                        paddingHorizontal: 6,
-                        borderRadius: 10,
-                        marginRight: 4,
-                      }}
-                    >
-                      {tag}
-                    </Text>
-                  ))}
+                  <View style={{ flexDirection: "row", marginVertical: 4 }}>
+                    {item.tags?.map((tag, i) => (
+                      <Text
+                        key={i}
+                        style={{
+                          backgroundColor: "#4A60C9",
+                          color: "white",
+                          fontSize: 10,
+                          paddingVertical: 2,
+                          paddingHorizontal: 6,
+                          borderRadius: 10,
+                          marginRight: 4,
+                        }}
+                      >
+                        {tag}
+                      </Text>
+                    ))}
+                  </View>
+
+                  <View style={{ flexDirection: "row" }}>
+                    {Array.from({ length: item.rating || 5 }, (_, i) => (
+                      <FontAwesome
+                        key={i}
+                        name="star"
+                        size={14}
+                        color="#FFD700"
+                      />
+                    ))}
+                  </View>
                 </View>
 
-                <View style={{ flexDirection: "row" }}>
-                  {Array.from({ length: 5 }, (_, i) => (
-                    <FontAwesome
-                      key={i}
-                      name="star"
-                      size={14}
-                      color="#FFD700"
-                    />
-                  ))}
+                <View style={{ alignItems: "center" }}>
+                  <Text
+                    style={{ color: "white", fontSize: 18, fontWeight: "bold" }}
+                  >
+                    ${item.price || "3200"}
+                  </Text>
+                  <TouchableOpacity style={{ marginTop: 8 }}>
+                    <Ionicons name="add-circle" size={32} color="#4A90E2" />
+                  </TouchableOpacity>
                 </View>
               </View>
-
-              <View style={{ alignItems: "center" }}>
-                <Text
-                  style={{ color: "white", fontSize: 18, fontWeight: "bold" }}
-                >
-                  $3200
-                </Text>
-                <TouchableOpacity style={{ marginTop: 8 }}>
-                  <Ionicons name="add-circle" size={32} color="#4A90E2" />
-                </TouchableOpacity>
-              </View>
-            </View>
-          ))}
-        </ScrollView>
+            )}
+            contentContainerStyle={{
+              paddingBottom: 30, // Add space at bottom
+            }}
+            ListHeaderComponent={
+              <View style={{ height: 16 }} /> // Space between filters and list
+            }
+          />
+        </View>
       </SafeAreaView>
 
       {/* Modal para seleccionar género */}
@@ -624,7 +659,7 @@ const CatalogScreen: React.FC = () => {
                     [selectedDate || ""]: {
                       selected: true,
                       selectedColor: "#4A90E2",
-                    }, 
+                    },
                   }}
                   theme={{
                     selectedDayBackgroundColor: "#4A90E2",
@@ -655,7 +690,7 @@ const CatalogScreen: React.FC = () => {
           </View>
         </TouchableWithoutFeedback>
       </Modal>
-    </LinearGradient>
+    </GradientBackground>
   );
 };
 

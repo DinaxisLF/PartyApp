@@ -1,4 +1,4 @@
-import AnimatedBackground from "@/assets/components/AnimatedBackground";
+import ColorGradient from "@/assets/components/colorfullBackground";
 import {
   SafeAreaView,
   View,
@@ -12,6 +12,10 @@ import { StatusBar } from "expo-status-bar";
 import Checkbox from "expo-checkbox";
 import * as DocumentPicker from "expo-document-picker";
 import { useState } from "react";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 
 export default function UserRegister() {
   const [acceptedTerms, setAcceptedTerms] = useState(false);
@@ -29,91 +33,126 @@ export default function UserRegister() {
   };
 
   return (
-    <SafeAreaView className="h-full py-8">
-      <AnimatedBackground />
-      <StatusBar style="light" />
-      <View className="flex flex-col px-5 py-5 items-center justify-center">
-        <View style={styles.topContent}>
-          <Text style={styles.title}>Crear Cuenta</Text>
-          <Image
-            source={require("@/assets/images/user_icon_white.png")}
-            style={styles.logo}
-          />
-        </View>
-
-        <View style={[styles.contenedor, { flex: 0 }]}>
-          {/* Changed from ScrollView to View */}
-          <Text className="text-lg font-biryani-semibold text-white ml-3 mb-0">
-            Nombre
-          </Text>
-          <TextInput
-            style={styles.input}
-            placeholder="👤 Nombre"
-            placeholderTextColor="#fff"
-          />
-          <Text className="text-lg font-biryani-semibold text-white ml-3 mb-0">
-            Apellidos
-          </Text>
-          <TextInput
-            style={styles.input}
-            placeholder="👤 Apellidos"
-            placeholderTextColor="#fff"
-          />
-          <Text className="text-lg font-biryani-semibold text-white ml-3 mb-0">
-            Correo
-          </Text>
-          <TextInput
-            style={styles.input}
-            placeholder="📧 Correo"
-            placeholderTextColor="#fff"
-          />
-          <Text className="text-lg font-biryani-semibold text-white ml-3 mb-0">
-            Contraseña
-          </Text>
-          <TextInput
-            style={styles.input}
-            placeholder="👁️ Contraseña"
-            placeholderTextColor="#fff"
-            secureTextEntry={true}
-          />
-          {/* Botón subir documento */}
-          <TouchableOpacity
-            onPress={handlePickDocument}
-            className="bg-gray-300 px-4 rounded-lg flex-row items-center justify-center ml-3"
-          >
-            <Text className="text-black font-biryani-semibold">
-              📄 Subir identificación oficial
-            </Text>
-          </TouchableOpacity>
-          <View style={styles.documentContainer}>
-            <Text
-              style={styles.documentText}
-              numberOfLines={1}
-              ellipsizeMode="tail"
-            >
-              {documentName || " "}
-            </Text>
-          </View>
-          {/* Checkbox de términos */}
-          <View style={styles.termsContainer}>
-            <Checkbox
-              value={acceptedTerms}
-              onValueChange={setAcceptedTerms}
-              color={acceptedTerms ? "#0013ff" : undefined}
+    <ColorGradient>
+      <SafeAreaView className="h-full py-8">
+        <StatusBar style="light" />
+        <View className="flex flex-col px-5 py-5 items-center justify-center">
+          <View style={styles.topContent}>
+            <Text style={styles.title}>Crear Cuenta</Text>
+            <Image
+              source={require("@/assets/images/user_icon_white.png")}
+              style={styles.logo}
             />
-            <Text style={styles.termsText}>
-              Acepto los <Text style={styles.link}>Términos y Condiciones</Text>
-            </Text>
           </View>
-          {/* Botón de acción */}
-          <TouchableOpacity className="bg-blue-500 px-4 py-2 rounded-lg flex-row items-center justify-center mt-2 ml-3">
-            <Text className="text-white font-biryani-semibold text-center">
-              Registrarse
+
+          <View style={[styles.contenedor, { flex: 0 }]}>
+            {/* Changed from ScrollView to View */}
+            <Text className="text-lg font-biryani-semibold text-white ml-3 mb-0">
+              Nombre
             </Text>
-          </TouchableOpacity>
+            <View style={styles.inputContainer}>
+              <Ionicons
+                name="person"
+                size={14}
+                color="#fff"
+                style={styles.inputIcon}
+              />
+              <TextInput
+                style={styles.input}
+                placeholder="Nombre"
+                placeholderTextColor="#fff"
+              />
+            </View>
+
+            <Text className="text-lg font-biryani-semibold text-white ml-3 mb-0">
+              Apellidos
+            </Text>
+            <View style={styles.inputContainer}>
+              <FontAwesome
+                name="id-badge"
+                size={14}
+                color="white"
+                style={styles.inputIcon}
+              />
+              <TextInput
+                style={styles.input}
+                placeholder="Apellidos"
+                placeholderTextColor="#fff"
+              />
+            </View>
+            <Text className="text-lg font-biryani-semibold text-white ml-3 mb-0">
+              Correo
+            </Text>
+            <View style={styles.inputContainer}>
+              <MaterialCommunityIcons
+                name="email-outline"
+                size={14}
+                color="white"
+                style={styles.inputIcon}
+              />
+              <TextInput
+                style={styles.input}
+                placeholder="Correo"
+                placeholderTextColor="#fff"
+              />
+            </View>
+            <Text className="text-lg font-biryani-semibold text-white ml-3 mb-0">
+              Contraseña
+            </Text>
+            <View style={styles.inputContainer}>
+              <FontAwesome
+                name="lock"
+                size={14}
+                color="white"
+                style={styles.inputIcon}
+              />
+              <TextInput
+                style={styles.input}
+                placeholder="Contraseña"
+                placeholderTextColor="#fff"
+              />
+            </View>
+            {/* Botón subir documento */}
+            <TouchableOpacity
+              onPress={handlePickDocument}
+              className="bg-gray-300 px-4 h-8 rounded-lg flex-row items-center justify-center"
+            >
+              <FontAwesome6 name="upload" size={12} color="black" />
+              <Text className="text-black font-biryani-semibold ml-4">
+                Subir identificación oficial
+              </Text>
+            </TouchableOpacity>
+            <View style={styles.documentContainer}>
+              <Text
+                style={styles.documentText}
+                numberOfLines={1}
+                ellipsizeMode="tail"
+              >
+                {documentName || " "}
+              </Text>
+            </View>
+            {/* Checkbox de términos */}
+            <View style={styles.termsContainer}>
+              <Checkbox
+                value={acceptedTerms}
+                onValueChange={setAcceptedTerms}
+                color={acceptedTerms ? "#0013ff" : undefined}
+              />
+              <Text style={styles.termsText}>
+                Acepto los{" "}
+                <Text style={styles.link}>Términos y Condiciones</Text>
+              </Text>
+            </View>
+            {/* Botón de acción */}
+            <TouchableOpacity className="bg-blue-500 px-4 py-2 rounded-lg flex-row items-center justify-center mt-2 ml-3">
+              <Text className="text-white font-biryani-semibold text-center">
+                Registrarse
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </ColorGradient>
   );
 }
 
@@ -149,17 +188,22 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   input: {
-    height: 35,
-    marginLeft: 12,
-    marginBottom: 20,
+    flex: 1,
+    color: "#fff",
+  },
+  inputContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "rgba(66, 66, 66, 0.2)",
     borderWidth: 1,
     borderColor: "white",
-    padding: 5,
-    justifyContent: "center",
     borderRadius: 10,
-    backgroundColor: "rgba(66, 66, 66, 0.2)",
-    color: "#fff",
-    fontFamily: "biryani-light",
+    height: 35, // Your desired height
+    marginBottom: 15,
+    paddingHorizontal: 12,
+  },
+  inputIcon: {
+    marginRight: 8,
   },
   documentContainer: {
     flexDirection: "row",

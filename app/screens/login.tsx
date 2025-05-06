@@ -1,4 +1,6 @@
 import React from "react";
+import Zocial from "@expo/vector-icons/Zocial";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import {
   View,
   Text,
@@ -12,7 +14,7 @@ import {
   SafeAreaView,
   Image,
 } from "react-native";
-import AnimatedBackground from "../../assets/components/AnimatedBackground";
+import ColorGradient from "@/assets/components/colorfullBackground";
 import { useRouter } from "expo-router";
 
 const { width, height } = Dimensions.get("window");
@@ -21,53 +23,56 @@ export default function LoginScreen() {
   const router = useRouter();
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <AnimatedBackground />
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={styles.keyboardAvoiding}
-      >
-        <ScrollView
-          contentContainerStyle={styles.container}
-          keyboardShouldPersistTaps="handled"
+    <ColorGradient>
+      <SafeAreaView style={styles.safeArea}>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          style={styles.keyboardAvoiding}
         >
-          <Text style={styles.title}>PartyApp</Text>
-          <Image
-            source={require("@/assets/images/logo-principal.png")}
-            style={styles.logo}
-          />
+          <ScrollView
+            contentContainerStyle={styles.container}
+            keyboardShouldPersistTaps="handled"
+          >
+            <Text style={styles.title}>PartyApp</Text>
+            <Image
+              source={require("@/assets/images/logo-principal.png")}
+              style={styles.logo}
+            />
 
-          <View style={styles.loginBox}>
-            <Text style={styles.loginTitle}>Iniciar Sesión</Text>
+            <View style={styles.loginBox}>
+              <Text style={styles.loginTitle}>Iniciar Sesión</Text>
 
-            <Text style={styles.label}>Correo</Text>
-            <View style={styles.inputContainer}>
-              <TextInput
-                placeholder="email@example.com"
-                placeholderTextColor="#ccc"
-                style={styles.input}
-                keyboardType="email-address"
-                autoCapitalize="none"
-              />
+              <Text style={styles.label}>Correo</Text>
+              <View className="flex-row bg-[#3C3C434D] h-[35px] mb-3 rounded-lg border border-gray-300 items-center px-4">
+                <Zocial name="email" size={12} color="white" />
+                <TextInput
+                  placeholder="email@example.com"
+                  placeholderTextColor="white"
+                  className="flex-1 text-white font-inter text-sm ml-3"
+                />
+              </View>
+
+              <Text style={styles.label}>Contraseña</Text>
+              <View className="flex-row bg-[#3C3C434D] h-[35px] mb-3 rounded-lg border border-gray-300 items-center px-4">
+                <MaterialIcons name="lock" size={12} color="white" />
+                <TextInput
+                  placeholder="********"
+                  placeholderTextColor="white"
+                  className="flex-1 text-white font-inter text-sm ml-3"
+                />
+              </View>
+
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => router.push("/home")}
+              >
+                <Text style={styles.buttonText}>Ingresar</Text>
+              </TouchableOpacity>
             </View>
-
-            <Text style={styles.label}>Contraseña</Text>
-            <View style={styles.inputContainer}>
-              <TextInput
-                placeholder="••••••••"
-                placeholderTextColor="#ccc"
-                style={styles.input}
-                secureTextEntry
-              />
-            </View>
-
-            <TouchableOpacity style={styles.button} onPress={()=>router.push("/screens/main-window")}>
-              <Text style={styles.buttonText}>Acceder</Text>
-            </TouchableOpacity>
-          </View>
-        </ScrollView>
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+          </ScrollView>
+        </KeyboardAvoidingView>
+      </SafeAreaView>
+    </ColorGradient>
   );
 }
 
@@ -93,8 +98,8 @@ const styles = StyleSheet.create({
     fontFamily: "KronaOne-Regular",
   },
   logo: {
-    width: width * 0.30,
-    height: width * 0.30,
+    width: width * 0.3,
+    height: width * 0.3,
     marginBottom: 30,
   },
   loginBox: {
@@ -139,7 +144,8 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center",
     fontWeight: "bold",
-    fontSize: 16,
+    fontSize: 14,
     fontFamily: "Biryani-Bold",
+    height: 15,
   },
 });
