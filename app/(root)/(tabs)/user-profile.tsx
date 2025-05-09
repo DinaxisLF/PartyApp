@@ -26,7 +26,7 @@ const ProfileScreen: React.FC = () => {
           <View className="flex items-center justify-center space-y-6">
             {/* Imagen de perfil */}
             <Image
-              source={require("../../../assets/images/profile-image.png")}
+              source={require("@/assets/images/avatar.png")}
               style={{
                 width: 120,
                 height: 120,
@@ -49,7 +49,7 @@ const ProfileScreen: React.FC = () => {
               className="text-3xl font-bold text-white"
               style={{ marginTop: 5 }}
             >
-              Nombre Del Usuario
+              Eduardo Flores
             </Text>
 
             {/* Botón editar perfil */}

@@ -1,5 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, TextInput, Keyboard } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  TextInput,
+  Keyboard,
+} from "react-native";
 import MapView, { Marker, MapPressEvent } from "react-native-maps";
 import { useRouter } from "expo-router";
 import * as Location from "expo-location";
@@ -8,11 +15,18 @@ export default function SelectLocationScreen() {
   const router = useRouter();
   const mapRef = useRef<MapView>(null);
 
-  const [selectedCoord, setSelectedCoord] = useState<{ latitude: number; longitude: number } | null>(null);
+  const [selectedCoord, setSelectedCoord] = useState<{
+    latitude: number;
+    longitude: number;
+  } | null>(null);
   const [address, setAddress] = useState<string>("");
   const [searchInput, setSearchInput] = useState<string>("");
-  const [hasLocationPermission, setHasLocationPermission] = useState<boolean>(false);
-  const [userLocation, setUserLocation] = useState<{ latitude: number; longitude: number } | null>(null);
+  const [hasLocationPermission, setHasLocationPermission] =
+    useState<boolean>(false);
+  const [userLocation, setUserLocation] = useState<{
+    latitude: number;
+    longitude: number;
+  } | null>(null);
 
   useEffect(() => {
     const requestPermission = async () => {
@@ -37,11 +51,16 @@ export default function SelectLocationScreen() {
     setSelectedCoord(coordinate);
 
     const { latitude, longitude } = coordinate;
-    const location = await Location.reverseGeocodeAsync({ latitude, longitude });
+    const location = await Location.reverseGeocodeAsync({
+      latitude,
+      longitude,
+    });
 
     if (location.length > 0) {
       const { city, region, country, street } = location[0];
-      const formattedAddress = `${street ? street + ", " : ""}${city ? city + ", " : ""}${region ? region + ", " : ""}${country ? country : ""}`;
+      const formattedAddress = `${street ? street + ", " : ""}${
+        city ? city + ", " : ""
+      }${region ? region + ", " : ""}${country ? country : ""}`;
       setAddress(formattedAddress);
     } else {
       setAddress("Dirección no disponible");
@@ -70,7 +89,9 @@ export default function SelectLocationScreen() {
         const location = await Location.reverseGeocodeAsync(newCoord);
         if (location.length > 0) {
           const { city, region, country, street } = location[0];
-          const formattedAddress = `${street ? street + ", " : ""}${city ? city + ", " : ""}${region ? region + ", " : ""}${country ? country : ""}`;
+          const formattedAddress = `${street ? street + ", " : ""}${
+            city ? city + ", " : ""
+          }${region ? region + ", " : ""}${country ? country : ""}`;
           setAddress(formattedAddress);
         }
       } else {
@@ -84,7 +105,10 @@ export default function SelectLocationScreen() {
 
   const confirmLocation = () => {
     if (selectedCoord) {
-      router.push({ pathname: "/screens/hiring-screen", params: { location: address } });
+      router.replace({
+        pathname: "/screens/hiring-screen",
+        params: { location: address },
+      });
     }
   };
 
@@ -118,7 +142,10 @@ export default function SelectLocationScreen() {
           onChangeText={setSearchInput}
           onSubmitEditing={handleAddressSearch}
         />
-        <TouchableOpacity style={styles.searchButton} onPress={handleAddressSearch}>
+        <TouchableOpacity
+          style={styles.searchButton}
+          onPress={handleAddressSearch}
+        >
           <Text style={styles.searchButtonText}>Buscar</Text>
         </TouchableOpacity>
       </View>
@@ -126,7 +153,9 @@ export default function SelectLocationScreen() {
       {/* Confirmar ubicación */}
       <View style={styles.bottomBar}>
         <Text style={styles.text}>
-          {address ? `Ubicación: ${address}` : "Toca el mapa o escribe una dirección"}
+          {address
+            ? `Ubicación: ${address}`
+            : "Toca el mapa o escribe una dirección"}
         </Text>
         {selectedCoord && (
           <TouchableOpacity style={styles.button} onPress={confirmLocation}>

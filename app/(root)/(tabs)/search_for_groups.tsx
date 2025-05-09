@@ -17,6 +17,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Slider } from "@rneui/themed";
 import { StyleSheet } from "react-native";
 import GradientBackground from "@/assets/components/gradientBackground";
+import { router } from "expo-router";
 
 interface Day {
   dateString: string;
@@ -209,7 +210,7 @@ const CatalogScreen: React.FC = () => {
                   marginTop: 20,
                   flexDirection: "row",
                   alignItems: "center",
-                  marginHorizontal: 5, 
+                  marginHorizontal: 5,
                 }}
               >
                 <Image
@@ -264,8 +265,11 @@ const CatalogScreen: React.FC = () => {
                   >
                     ${item.price || "3200"}
                   </Text>
-                  <TouchableOpacity style={{ marginTop: 8 }}>
-                    <Ionicons name="add-circle" size={32} color="#4A90E2" />
+                  <TouchableOpacity
+                    style={{ marginTop: 60 }}
+                    onPress={() => router.push("/screens/hiring-screen")}
+                  >
+                    <Ionicons name="add-circle" size={28} color="#4A90E2" />
                   </TouchableOpacity>
                 </View>
               </View>

@@ -59,6 +59,7 @@ export default function LoginScreen() {
                   placeholder="********"
                   placeholderTextColor="white"
                   className="flex-1 text-white font-inter text-sm ml-3"
+                  secureTextEntry={true}
                 />
               </View>
 

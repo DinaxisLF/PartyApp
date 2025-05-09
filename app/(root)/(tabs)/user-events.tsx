@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { Calendar } from "react-native-calendars";
 import EventCard from "@/assets/components/event-card";
+import { router } from "expo-router";
 
 const eventsData = [
   {
@@ -48,6 +49,10 @@ export default function UserEvents() {
     "eventos"
   );
 
+  const handleDayPress = () => {
+    router.push("/screens/event-details");
+  };
+
   return (
     <GradientBackground>
       <SafeAreaView className="flex-1">
@@ -55,6 +60,8 @@ export default function UserEvents() {
           <Text className="font-biryani-semibold color-white text-[32px] text-center mt-10">
             {activeTab === "eventos" ? "Eventos" : "Calendario"}
           </Text>
+
+          {/* Tabs remain the same */}
           <View className="flex-row self-center mt-2">
             <TouchableOpacity
               className={`h-[28px] w-[130px] rounded-[4px] ${
@@ -78,6 +85,7 @@ export default function UserEvents() {
               </Text>
             </TouchableOpacity>
           </View>
+
           <View className="flex-1 mt-2">
             {activeTab === "eventos" ? (
               <FlatList
@@ -96,6 +104,7 @@ export default function UserEvents() {
                 <View className="flex-col items-center">
                   <View className="w-[300px] h-[310px] mt-2">
                     <Calendar
+                      onDayPress={handleDayPress} // Add this line
                       theme={{
                         calendarBackground: "#1C1C1E",
                         monthTextColor: "#FFFFFF",
@@ -106,6 +115,7 @@ export default function UserEvents() {
                     />
                   </View>
 
+                  {/* Legend remains the same */}
                   <View className="flex-row self-center mt-5 gap-2">
                     <View className="h-[20px] w-[100px] bg-[#27272A] rounded-[99px] flex-row gap-1 px-1 items-center">
                       <Image

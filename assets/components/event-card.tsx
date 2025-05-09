@@ -1,5 +1,5 @@
 import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
-
+import { router } from "expo-router";
 interface EventCardProps {
   event: {
     id: string;
@@ -34,7 +34,10 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
         </View>
 
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.detailsButton}>
+          <TouchableOpacity
+            style={styles.detailsButton}
+            onPress={() => router.push("/screens/event-details")}
+          >
             <Text style={styles.detailsButtonText}>Detalles</Text>
           </TouchableOpacity>
 
