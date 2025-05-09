@@ -79,6 +79,12 @@ const CatalogScreen: React.FC = () => {
   const [showDateModal, setShowDateModal] = useState(false);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
 
+  //Search
+  const [searchTerm, setSearchTerm] = useState("");
+  const filteredGroups = groupData.filter((group) =>
+    group.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   const handleGuardar = () => {
     if (selectedDate) {
       console.log("Fecha guardada:", selectedDate);
@@ -128,6 +134,8 @@ const CatalogScreen: React.FC = () => {
               placeholder="Buscar"
               placeholderTextColor="#ccc"
               style={{ flex: 1, padding: 10, color: "white" }}
+              onChangeText={(text) => setSearchTerm(text)}
+              value={searchTerm}
             />
             <TouchableOpacity>
               <Ionicons name="search-circle" size={32} color="#4A90E2" />
@@ -199,7 +207,7 @@ const CatalogScreen: React.FC = () => {
 
           {/* Lista de grupos */}
           <FlatList
-            data={groupData} // Your data array
+            data={searchTerm ? filteredGroups : groupData}
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
               <View

@@ -1,6 +1,7 @@
 import { View, Text, ScrollView, TouchableOpacity, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-
+import PaymentMethodsCard from "@/assets/components/payment-methods-card";
+import GradientBackground from "@/assets/components/gradientBackground";
 export default function PantallaInformacionPagos() {
   const historial = [
     {
@@ -26,6 +27,27 @@ export default function PantallaInformacionPagos() {
     },
   ];
 
+  const cardData = [
+    {
+      backgroundColor: "#1F2A37",
+      brandImage: require("@/assets/images/Visa.png"),
+      lastFourDigits: "1234",
+      expirationDate: "21/32",
+    },
+    {
+      backgroundColor: "#771D1D",
+      brandImage: require("@/assets/images/mastercard.png"),
+      lastFourDigits: "2133",
+      expirationDate: "05/32",
+    },
+    {
+      backgroundColor: "#0E9F6E",
+      brandImage: require("@/assets/images/Visa.png"),
+      lastFourDigits: "2721",
+      expirationDate: "19/32",
+    },
+  ];
+
   const estadoColor = {
     aprobado: "text-green-400",
     pendiente: "text-yellow-400",
@@ -33,68 +55,69 @@ export default function PantallaInformacionPagos() {
   };
 
   return (
-    <ScrollView className="flex-1 bg-blue-500">
-      <Text className="text-white text-3xl font-bold mt-12 px-7 mb-0">
-        Información de Pagos
-      </Text>
-
-      <Text className="text-white text-2xl font-bold mt-5 px-6">
-        Metodos de Pago
-      </Text>
-
-      {/* Tarjeta */}
-      <View className="bg-slate-800 rounded-xl p-10 m-5">
-        <View className="flex-row justify-between items-center">
-          <Ionicons name="card" size={28} color="gold" />
-          <Image
-            source={{
-              uri: "https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png",
-            }}
-            className="w-14 h-8"
-            resizeMode="contain"
-          />
-        </View>
-        <Text className="text-white text-lg mt-4 font-bold">
-          **** **** **** 7753
+    <GradientBackground>
+      <ScrollView className="flex-1">
+        <Text className="text-white text-3xl font-bold mt-12 px-7 mb-0">
+          Información de Pagos
         </Text>
-        <Text className="text-white mt-1 font-bold">12/32</Text>
-      </View>
 
-      <TouchableOpacity className="bg-blue-600 py-3 px-6 rounded-lg mb-4 self-center">
-        <Text className="text-center text-white font-semibold">Opciones</Text>
-      </TouchableOpacity>
+        <Text className="text-white text-2xl font-bold mt-5 px-6">
+          Metodos de Pago
+        </Text>
 
-      {/* Historial */}
-      <Text className="text-white text-lg font-semibold px-6 mb-5">
-        Historial de Pagos
-      </Text>
-
-      <View className="bg-slate-800 mx-6 rounded-xl p-4 mb-8">
-        {historial.map((item) => (
-          <View
-            key={item.id}
-            className="bg-gray-500 rounded-xl p-4 mt-3 flex-row items-center"
+        <View>
+          <ScrollView
+            horizontal
+            className="self-center"
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{ gap: 16, paddingHorizontal: 8 }}
           >
-            <Image
-              source={require("../../assets/images/farenheit.jpg")}
-              className="w-10 h-10 rounded-full mr-4"
-            />
-            <View className="flex-1">
-              <Text className="text-white font-semibold">{item.nombre}</Text>
-              <Text className="text-gray-300 text-sm">{item.fecha}</Text>
-            </View>
-            <Text
-              className={`text-sm font-semibold ${
-                estadoColor[item.estado as keyof typeof estadoColor]
-              }`}
+            {cardData.map((card, index) => (
+              <PaymentMethodsCard
+                key={index}
+                backgroundColor={card.backgroundColor}
+                brandImage={card.brandImage}
+                lastFourDigits={card.lastFourDigits}
+                expirationDate={card.expirationDate}
+              />
+            ))}
+          </ScrollView>
+        </View>
+
+        <TouchableOpacity className="bg-blue-600 py-3 px-6 rounded-lg mb-4 mt-5 self-center">
+          <Text className="text-center text-white font-semibold">Opciones</Text>
+        </TouchableOpacity>
+
+        {/* Historial */}
+        <Text className="text-white text-lg font-semibold px-6 mb-5">
+          Historial de Pagos
+        </Text>
+
+        <View className="bg-slate-800 mx-6 rounded-xl p-4 mb-8">
+          {historial.map((item) => (
+            <View
+              key={item.id}
+              className="bg-gray-500 rounded-xl p-4 mt-3 flex-row items-center"
             >
-              <Text className="text-right">
-                {item.monto}
+              <Image
+                source={require("../../assets/images/farenheit.jpg")}
+                className="w-10 h-10 rounded-full mr-4"
+              />
+              <View className="flex-1">
+                <Text className="text-white font-semibold">{item.nombre}</Text>
+                <Text className="text-gray-300 text-sm">{item.fecha}</Text>
+              </View>
+              <Text
+                className={`text-sm font-semibold ${
+                  estadoColor[item.estado as keyof typeof estadoColor]
+                }`}
+              >
+                <Text className="text-right">{item.monto}</Text>
               </Text>
-            </Text>
-          </View>
-        ))}
-      </View>
-    </ScrollView>
+            </View>
+          ))}
+        </View>
+      </ScrollView>
+    </GradientBackground>
   );
 }

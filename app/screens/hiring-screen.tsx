@@ -231,8 +231,7 @@ export default function HiringScreen() {
                   onPress={() => {
                     setShowConfirmationModal(false);
                     console.log("Contratación confirmada");
-                    router.back();
-                    router.back();
+                    router.replace("/screens/with-payment-methods");
                     // Aquí puedes enviar los datos a tu backend o navegar a otra pantalla
                   }}
                 >

@@ -64,7 +64,7 @@ const ProfileScreen: React.FC = () => {
             {/* Información básica */}
             <View className="bg-slate-800 p-6 rounded-xl shadow-md w-11/12 max-w-md">
               <Text className="text-lg font-semibold text-white">Nombre:</Text>
-              <Text className="text-xl text-white">X</Text>
+              <Text className="text-xl text-white">Eduardo Flores</Text>
             </View>
 
             <View className="bg-slate-800 p-6 rounded-xl shadow-md w-11/12 max-w-md mt-4">
@@ -89,9 +89,10 @@ const ProfileScreen: React.FC = () => {
               <Text className="text-xl text-green-600">Verificado</Text>
             </View>
 
-            <TouchableOpacity 
-            className="bg-slate-800 p-6 rounded-xl shadow-md w-11/12 max-w-md mt-4"
-            onPress={() => router.push("/screens/with-payment-methods")}>
+            <TouchableOpacity
+              className="bg-slate-800 p-6 rounded-xl shadow-md w-11/12 max-w-md mt-4"
+              onPress={() => router.push("/screens/payment_history")}
+            >
               <Text className="text-lg font-semibold text-white">
                 Método de Pago:
               </Text>
