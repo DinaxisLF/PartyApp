@@ -10,6 +10,7 @@ import {
 import { StatusBar } from "expo-status-bar";
 import { FontAwesome } from "@expo/vector-icons";
 import GradientBackground from "../../../assets/components/gradientBackground"; // ajusta la ruta si es necesario
+import { router } from "expo-router";
 
 const ProfileScreen: React.FC = () => {
   return (
@@ -88,14 +89,16 @@ const ProfileScreen: React.FC = () => {
               <Text className="text-xl text-green-600">Verificado</Text>
             </View>
 
-            <View className="bg-slate-800 p-6 rounded-xl shadow-md w-11/12 max-w-md mt-4">
+            <TouchableOpacity 
+            className="bg-slate-800 p-6 rounded-xl shadow-md w-11/12 max-w-md mt-4"
+            onPress={() => router.push("/screens/with-payment-methods")}>
               <Text className="text-lg font-semibold text-white">
                 Método de Pago:
               </Text>
               <Text className="text-xl text-white">
                 Tarjeta de débito ***1234
               </Text>
-            </View>
+            </TouchableOpacity>
 
             {/* Eventos próximos */}
             <View className="bg-slate-800 p-6 rounded-xl shadow-md w-11/12 max-w-md mt-4">
