@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { FontAwesome } from "@expo/vector-icons";
-import GradientBackground from "../../../assets/components/gradientBackground"; // ajusta la ruta si es necesario
+import GradientBackground from "../../../assets/components/gradientBackground"; 
 import { router } from "expo-router";
 
 const ProfileScreen: React.FC = () => {
@@ -54,7 +54,7 @@ const ProfileScreen: React.FC = () => {
             </Text>
 
             {/* Botón editar perfil */}
-            <TouchableOpacity
+            <TouchableOpacity onPress={() => router.push("/screens/group_profile")}
               className="bg-violet-500 px-5 py-2 rounded-md mt-2"
               style={{ marginBottom: 15, marginTop: 15 }}
             >

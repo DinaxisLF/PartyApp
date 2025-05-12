@@ -13,7 +13,6 @@ import {
 } from "react-native";
 import { Calendar, DateData } from "react-native-calendars";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
-import { LinearGradient } from "expo-linear-gradient";
 import { Slider } from "@rneui/themed";
 import { StyleSheet } from "react-native";
 import GradientBackground from "@/assets/components/gradientBackground";
