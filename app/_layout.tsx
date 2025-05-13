@@ -3,7 +3,11 @@ import "./globals.css";
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
 import AnimatedBackground from "../assets/components/AnimatedBackground";
-import {Inter_400Regular, Inter_700Bold, Inter_500Medium } from '@expo-google-fonts/inter';
+import {
+  Inter_400Regular,
+  Inter_700Bold,
+  Inter_500Medium,
+} from "@expo-google-fonts/inter";
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({

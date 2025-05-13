@@ -13,6 +13,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { StatusBar } from "expo-status-bar";
 import { router } from "expo-router";
 import GradientBackground from "@/assets/components/gradientBackground";
+import { Video, ResizeMode } from "expo-av";
 
 export default function PerfilGrupo() {
   const generos = ["Norteño", "Regional", "Banda"];
@@ -28,6 +29,20 @@ export default function PerfilGrupo() {
   const data = {
     image: require("@/assets/images/farenheit.jpg"),
   };
+
+  const previewImages = [
+    "https://placekitten.com/400/300",
+    "https://picsum.photos/seed/picsum/400/300",
+    "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d", // nueva
+    "https://images.unsplash.com/photo-1518791841217-8f162f1e1131", // nueva
+  ];
+
+  const previewVideos = [
+    "https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+    "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+    "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4", // nuevo
+    "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4", // nuevo
+  ];
 
   return (
     <GradientBackground>
@@ -109,21 +124,67 @@ export default function PerfilGrupo() {
 
             {/* Portafolio */}
             <Text className="text-white font-semibold mb-2">Portafolio:</Text>
-            <ScrollView horizontal className="mb-6">
-              {portafolio.map((item, idx) => (
-                <TouchableOpacity
-                  key={idx}
-                  onPress={() => abrirVideo(item.uri)}
-                  style={{ marginRight: 12 }}
+            <ScrollView className="mb-10">
+              <View className="bg-slate-800 rounded-xl shadow-md w-auto h-auto justify-center items-center mb-5">
+                <Text style={styles.sectionTitle}>Fotos</Text>
+                <ScrollView
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  className="pb-4"
                 >
-                  <Image
-                    source={{
-                      uri: "https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg",
-                    }}
-                    style={{ width: 150, height: 90, borderRadius: 8 }}
-                  />
-                </TouchableOpacity>
-              ))}
+                  <View className="flex-row">
+                    {previewImages.map((uri, index) => (
+                      <Image
+                        key={index}
+                        source={{ uri }}
+                        className="w-60 h-40 rounded-lg mr-4"
+                        resizeMode="cover"
+                      />
+                    ))}
+                  </View>
+                </ScrollView>
+              </View>
+
+              <View className="bg-slate-800 rounded-xl shadow-md w-auto h-auto justify-center items-center mb-5 p-2">
+                <Text style={styles.sectionTitle}>Videos</Text>
+                <ScrollView
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  className="px-4 pb-4"
+                >
+                  <View className="flex-row">
+                    {previewVideos.map((uri, index) => (
+                      <Video
+                        key={index}
+                        source={{ uri }}
+                        style={{
+                          width: 240,
+                          height: 135,
+                          borderRadius: 10,
+                          marginRight: 16,
+                        }}
+                        useNativeControls
+                        resizeMode={ResizeMode.CONTAIN}
+                      />
+                    ))}
+                  </View>
+                </ScrollView>
+              </View>
+
+              <View className="bg-slate-800 rounded-xl shadow-md w-auto h-auto justify-center items-center mb-5 p-2">
+                <Text style={styles.sectionTitle}>Redes sociales</Text>
+                <View className="flex-row gap-2 mb-5">
+                  <TouchableOpacity className="bg-white rounded-md p-2">
+                    <FontAwesome name="facebook" size={24} color="black" />
+                  </TouchableOpacity>
+                  <TouchableOpacity className="bg-white rounded-md p-2">
+                    <FontAwesome name="instagram" size={24} color="black" />
+                  </TouchableOpacity>
+                  <TouchableOpacity className="bg-white rounded-md p-2">
+                    <FontAwesome name="twitter" size={24} color="black" />
+                  </TouchableOpacity>
+                </View>
+              </View>
             </ScrollView>
           </View>
         </ScrollView>
@@ -162,5 +223,12 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
     zIndex: 100,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "white",
+    marginVertical: 10,
+    textAlign: "center",
   },
 });

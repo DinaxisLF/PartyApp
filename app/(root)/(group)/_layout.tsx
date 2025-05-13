@@ -3,7 +3,6 @@ import React from "react";
 import { Tabs } from "expo-router";
 import Entypo from "@expo/vector-icons/Entypo";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 const TabIcon = ({
@@ -15,13 +14,19 @@ const TabIcon = ({
   icon: React.ReactNode;
   title: string;
 }) => (
-  <View className="mt-1 flex-col items-center">
+  <View className="mt-1 flex-col items-center justify-center w-full">
     {icon}
-    <Text className="text-white text-xs mt-1">{title}</Text>
+    <Text
+      className="text-white text-[7px] mt-[2px] text-center"
+      numberOfLines={1}
+      ellipsizeMode="tail"
+    >
+      {title}
+    </Text>
   </View>
 );
 
-const TabsLayout = () => {
+const GroupTabs = () => {
   return (
     <Tabs
       screenOptions={{
@@ -35,12 +40,13 @@ const TabsLayout = () => {
         },
       }}
     >
+      {/* Artist-specific tabs */}
       <Tabs.Screen
         name="home"
         options={{
           title: "Home",
           headerShown: false,
-          tabBarIcon: ({ focused }: { focused: boolean }) => (
+          tabBarIcon: ({ focused }) => (
             <TabIcon
               focused={focused}
               icon={
@@ -56,11 +62,11 @@ const TabsLayout = () => {
         }}
       />
       <Tabs.Screen
-        name="user-events"
+        name="group-events"
         options={{
           title: "Eventos",
           headerShown: false,
-          tabBarIcon: ({ focused }: { focused: boolean }) => (
+          tabBarIcon: ({ focused }) => (
             <TabIcon
               focused={focused}
               icon={
@@ -76,31 +82,31 @@ const TabsLayout = () => {
         }}
       />
       <Tabs.Screen
-        name="search_for_groups"
+        name="portfolio"
         options={{
-          title: "Buscar",
+          title: "Portafolio",
           headerShown: false,
-          tabBarIcon: ({ focused }: { focused: boolean }) => (
+          tabBarIcon: ({ focused }) => (
             <TabIcon
               focused={focused}
               icon={
-                <MaterialCommunityIcons
-                  name="note-search"
+                <FontAwesome5
+                  name="briefcase"
                   size={20}
                   color={focused ? "#1C64F2" : "#9CA3AF"}
                 />
               }
-              title="Buscar"
+              title="Portafolio"
             />
           ),
         }}
       />
       <Tabs.Screen
-        name="user-profile"
+        name="group-profile"
         options={{
           title: "Perfil",
           headerShown: false,
-          tabBarIcon: ({ focused }: { focused: boolean }) => (
+          tabBarIcon: ({ focused }) => (
             <TabIcon
               focused={focused}
               icon={
@@ -119,4 +125,4 @@ const TabsLayout = () => {
   );
 };
 
-export default TabsLayout;
+export default GroupTabs;

@@ -1,4 +1,5 @@
 import ColorGradient from "@/assets/components/colorfullBackground";
+import { useUserStore } from "@/stores/userStore";
 import { router } from "expo-router";
 import {
   SafeAreaView,
@@ -13,6 +14,8 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { StatusBar } from "expo-status-bar";
 
 export default function UserType() {
+  const { setUserType } = useUserStore();
+
   return (
     <ColorGradient>
       <SafeAreaView className="h-full">
@@ -42,7 +45,10 @@ export default function UserType() {
             </Text>
             <TouchableOpacity
               className="bg-blue-500 px-5 py-2 rounded-md mt-2 max-w-40"
-              onPress={() => router.push("/screens/group-register")}
+              onPress={() => {
+                router.push("/screens/group-register");
+                setUserType("artist");
+              }}
             >
               <View className="flex-row items-center justify-center">
                 <Text className="text-white font-biryani-semibold">
@@ -69,7 +75,10 @@ export default function UserType() {
             </Text>
             <TouchableOpacity
               className="bg-blue-500 px-5 py-2 rounded-md mt-2 max-w-40"
-              onPress={() => router.push("/screens/user-register")}
+              onPress={() => {
+                router.push("/screens/user-register");
+                setUserType("regular");
+              }}
             >
               <View className="flex-row items-center justify-center">
                 <Text className="text-white font-biryani-semibold">
